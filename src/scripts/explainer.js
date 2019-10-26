@@ -75,7 +75,8 @@ let arc = d3
 
 let slider = d3.select('#guesser-slider')
 let pctSvg = d3
-	.select('#pct-viz')
+	.select('#chart-1')
+	.append('svg')
 	.style('margin', 'auto')
 	.attr('width', pct_width)
 	.attr('height', pct_height)
