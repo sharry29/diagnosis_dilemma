@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-
 const margin = { top: 50, left: 50, right: 50, bottom: 50 }
 const width = 600 - margin.left - margin.right
 const height = width
@@ -74,9 +73,9 @@ let arc = d3
 	.startAngle(0)
 	.endAngle(d => angleScale(d))
 
-let slider = d3.select('#guesser_slider')
+let slider = d3.select('#guesser-slider')
 let pctSvg = d3
-	.select('#pct_viz')
+	.select('#pct-viz')
 	.style('margin', 'auto')
 	.attr('width', pct_width)
 	.attr('height', pct_height)
@@ -85,19 +84,19 @@ let pctSvg = d3
 
 pctSvg
 	.append('path')
-	.attr('id', 'pct_arc')
+	.attr('id', 'pct-arc')
 	.attr('d', arc.endAngle(Math.PI))
 	.attr('fill', '#fdae61')
 	.attr('stroke', 'black')
 
-let guess_text = d3.select('#guess_value')
+let guess_text = d3.select('#guess-value')
 slider.on('input', function() {
 	const chosen = slider.property('value')
 	guess_text.text(`${chosen}% chance of having Probaphobia`)
-	d3.select('#pct_arc').attr('d', arc.endAngle(angleScale(chosen)))
+	d3.select('#pct-arc').attr('d', arc.endAngle(angleScale(chosen)))
 })
 
-d3.select('#guess_scene').on('click', respondToGuess)
+d3.select('#guess-scene').on('click', respondToGuess)
 
 function respondToGuess() {
 	d3.selectAll('.isVisible')
@@ -146,7 +145,7 @@ function respondToGuess() {
 				.attr('opacity', 1)
 			pctSvg
 				.append('path')
-				.attr('id', 'pct_arc')
+				.attr('id', 'pct-arc-true')
 				.attr('d', arc.endAngle(Math.PI))
 				.attr('transform', `translate(${pct_width / 4},0)`)
 				.attr('fill', '#a6d96a')
