@@ -1,8 +1,8 @@
 body {
     margin: auto;
-    padding: 50px 10px;
+    padding: 10px 10px;
     font-family: 'Open Sans', sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 img {
@@ -97,16 +97,17 @@ h1.headline {
     font-weight: 800;
 }
 
-h2.subhead {
-    font-size: 1.4rem;
+h2.headline {
+    font-size: 1.2rem;
     line-height: 2rem;
     margin-bottom: 0;
     margin-top: 15px;
-    font-weight: 400;
+    text-align: center;
+    /*font-weight: 400;*/
 }
 
-p.body-text {
-    font-size: 1.1rem;
+p {
+    font-size: 0.9rem;
     line-height: 1.4;
     margin-top: 0;
     margin-bottom: 15px;
@@ -117,6 +118,25 @@ h3.section-head {
     margin: 40px 0 10px 0;
     font-weight: 700;
     line-height: 1.3;
+}
+
+strong.positive-str {
+    color: #d7191c;
+}
+strong.negative-str {
+    color: #a6d96a;
+}
+strong.positive-s-str {
+    color: #d7191c;
+}
+strong.negative-s-str {
+    color: #fdae61;
+}
+strong.positive-h-str {
+    color: #1a9641;
+}
+strong.negative-h-str {
+    color: #a6d96a;
 }
 
 .byline {
