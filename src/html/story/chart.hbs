@@ -24,31 +24,42 @@
 			<p>Let's imagine that we take a sample of 1,600 people. Here, each person is a square. Some of these people are sick (each with probability 1%), but we won't see for sure if someone is sick or healthy for a couple more steps. First, let's <strong>test every person using our device.</strong></p>
 		</div>
 		<div class="interElems isEnter" id='explanation-tested'>
-			<p>Here we're coloring in everybody depending on whether or not they tested positive using our fancy medical device. Remember: right now, we don't actually know who is sick and who is healthy: we only know what the imperfect device tells us.</p>
+			<p>Here we're coloring in everybody depending on whether or not they tested positive using our fancy medical device. Remember that right now, we don't actually know who is sick and who is healthy: we only know what the imperfect device tells us.</p>
 			<p>It turns out that <strong class="negative-str">XX people tested negative</strong> and <strong class="positive-str">YY tested positive</strong>. Let's group everyone together to make this easier to think about.</p>
 		</div>
 		<div class="interElems isEnter" id='explanation-tested-ordered'>
-			<p>Now that everything's in order, we see that the number of people who <strong class="positive-str">test positive</strong> are very strongly in the minority. This is reasonable: only 1% of the global population has Probaphobia, and our device is pretty accurate overall. But we still don't know who's sick!</p>
-			<p>Did I forget to mention? Probaphobia makes you sprout wings after 10 years. That way, it becomes pretty obvious who among our sample actually had the disease, regardless of what the device said. Let's simulate the passing of a decade now to let the diseased people reveal themselves.</p>
+			<p>Now that everything's in order, we see that the number of people who <strong class="positive-str">test positive</strong> are very strongly in the minority. This is reasonable: only 1% of the global population has Probaphobia, and our device is pretty accurate overall. It should be rare that someone actually tests positive. But we still don't know who's sick! How can we find out, you ask?</p>
+			<p>Oh! Did I forget to mention? Probaphobia makes you sprout wings after 10 years with the disease. That way, it becomes pretty obvious who among our sample actually had the disease, regardless of what the device said. Let's simulate the passing of a decade now to let the diseased people spread their wings and reveal themselves.</p>
 		</div>
 		<div class="interElems isEnter" id='explanation-healthy'>
-			<p>Here we see who's actually sick, independent of who tested positive or negative. In particular, <strong class="positive-s-str"></strong> and <strong class="negative-h-str"></strong>. These are the people for whom the device worked correctly!</p>
-			<p>Unfortunately, the device was not perfect. Here we've got <strong class="positive-h-str"></strong>.</p>
+			<p>Here we see who's actually sick, independent of who tested positive or negative. Let's break down what we find. We'll start with the people that the device categorized correctly: <strong class="positive-s-str"></strong> and <strong class="negative-h-str"></strong>.</p>
+			<p>As we know, the device isn't perfect. Here we've got <strong class="positive-h-str"></strong>.</p>
 			<span class='false-negatives isHidden'>
 				<p>Even worse, we have a truly bad outcome: <strong class='negative-s-str'></strong> This person was ill, but the device didn't detect it.</p>
 			</span>			
 		 	<span class='no-false-negatives isHidden'>
-				<p>Happily, we have no false negatives! People with this outcome would be in a really bad situation: they'd be sick but the device would claim otherwise.</p>
+				<p>Happily, we have no <strong class='negative-s-str'>false negatives!</strong> People with this outcome would be in a really bad situation: they'd be sick but the device would claim otherwise.</p>
 			</span>
-			<p>Now that we've got everything arranged just so, let's answer the original question: how many people who tested positive actually have Probaphobia?</p>
+			<p>Now that we've got everything arranged just so, let's answer the original question: how many people who tested positive actually have Probaphobia? We'll start by looking at just those who tested positive.</p>
 		</div>
 		<div class="interElems isEnter" id='explanation-all-pos'>
-			<p>Here, we remove from consideration every person that tested negative, regardless of whether or not they had Probaphobia. We're trying to get the probability of having Probaphobia <strong>among those who test positive</strong>. A person who tested negative doens't tell us anything interesting about what we want to know!</p>
+			<p>Here, we remove from consideration every person that tested negative, regardless of whether or not they had Probaphobia. In most experiments, we will only have <strong class="negative-h-str">true negatives</strong>, or healthy people that tested negative for Probaphobia, to remove. <strong class="negative-s-str">False negatives</strong> are pretty rare. But their health doesn't actually matter: we're trying to get the probability of having Probaphobia among those who test positive, <strong class="positive-s-str">correctly</strong> or <strong class="positive-h-str">not.</strong> A person who tested negative, sick or healthy, doesn't tell us anything interesting about what we want to know!</p>
 			<p>Next up, let's take a closer look at our remaining folks, all of whom tested positive.</p>
 		</div>
 		<div class="interElems isEnter" id='explanation-zoomed'>
-			<p>Alright, things are coming into focus here. It turns out that when we compare the numbers of the healthy and the sick when constrained only to those who tested positive, these groups are about the same size!</p>
-			<p>Just one more step 'til our experimental result...</p>
+			<p>Alright, things are coming into focus here. It turns out that when we compare the numbers of the healthy and the sick when constrained only to those who tested positive, these groups are not so far off in size, especially compared to the number of <strong class="negative-h-str">device-cleared, disease-free folks!</strong> Given that you know someone has tested positive, it's then about equally as likely that they'll be in the <strong class="positive-h-str">healthy group</strong> as it is that they'll <strong class="positive-s-str">actually be sick.</strong></p>
+			<p>To get our experimental result for the probability of having Probaphobia given that the device says you have it, we just need to divide the number of <strong class="positive-s-str">true positives</strong> by the total number of positives (<strong class="positive-s-str">true</strong> and <strong class="positive-h-str">false</strong> positive counts added together). Click on to see our result!</p>
+		</div>
+		<div class="interElems isEnter" id='explanation-finale'>
+			<p>OK, so if we have <strong class="positive-s-str"></strong> out of <strong class="total"></strong>, we estimate that you're only <strong class="pct"></strong> likely to actually have Probaphobia! So don't freak out yet, you might not be destined for wings.</p>
+			<p>The goal of this question was to help you reason about conditional probability: given that you know one thing about a situation, how can you use that information to deduce the likelihood of other outcomes? Here, you knew that you tested positive. This told us that one of two <strong>exceedingly rare</strong> things has happened: you could be very unlucky and actually have Probaphobia, in which case the device is almost certainly right about you! Or you could be free of this rare disease like almost everybody else yet subject to an unfortunate device misfire. With these numbers, we've seen that in a large group of people, it'll be about the same number of people in both categories.</p>
+			<p>To derive that the true probability is exactly 50%, we'd need <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes' Theorem</a>. That's a theorem for another explainer! But if you click the button just one more time, I'll let you play around with the device accuracy and disease frequency to see how the probability behaves.</p>
+		</div>
+		<div class="interElems isHidden" id='playground'>
+			<h4 id='acc-label'>99% Device Accuracy</h4>
+			<input id='accuracy-slider' type='range' min='50.0' max='100' step='0.1' value='99.0'>
+			<h4 id='occ-label'>Probaphobia Occurrence Rate</h4>
+			<input id='occurrence-slider' type='range' min='0.1' max='10' step='0.1' value='1.0'>
 		</div>
 	</div>
 	<div class="chart-row" id="chart-1">

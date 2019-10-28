@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 const margin = { top: 10, left: 10, right: 10, bottom: 10 }
-const width = 450 - margin.left - margin.right
+const width = 350 - margin.left - margin.right
 const height = width
 const pct_width = 450
 const pct_height = 200
@@ -78,6 +78,11 @@ let bigAngleScale = d3
 	.scaleLinear()
 	.domain([0, TRUE_POS + FALSE_POS])
 	.range([0, 2 * Math.PI])
+let finalAngleScale = d3
+	.scaleLinear()
+	.domain([0, 1])
+	.range([0, 2 * Math.PI])
+
 let bigArc = d3
 	.arc()
 	.innerRadius(0)
@@ -146,16 +151,16 @@ function respondToGuess() {
 				.text(`Your Guess (${guess}%)`)
 				.attr('dx', -pct_width / 4)
 				.attr('dy', 80)
-				// .transition()
-				// .duration(500)
+				.transition()
+				.duration(500)
 				.attr('opacity', 1)
 			pctSvg
 				.append('text')
 				.text('True Probability (50%)')
 				.attr('dx', pct_width / 4)
 				.attr('dy', 80)
-				// .transition()
-				// .duration(500)
+				.transition()
+				.duration(500)
 				.attr('opacity', 1)
 			pctSvg
 				.append('path')
@@ -164,8 +169,8 @@ function respondToGuess() {
 				.attr('transform', `translate(${pct_width / 4},0)`)
 				.attr('fill', '#d7191c')
 				.attr('stroke', 'black')
-				// .transition()
-				// .duration(500)
+				.transition()
+				.duration(500)
 				.attr('opacity', 1)
 		})
 	theButton.text('But why is it only 50%?').on('click', startExplanation)
@@ -178,7 +183,7 @@ function startExplanation() {
 	d3.select('#explanation-start')
 		.classed('isVisible', true)
 		.classed('isEnter', false)
-	theButton.on('click', testIndividuals)
+	theButton.text("Let's get testing!").on('click', testIndividuals)
 	pctSvg.remove()
 	pctSvg = d3
 		.select('svg')
@@ -199,11 +204,11 @@ function startExplanation() {
 		.attr('stroke', 'none')
 		.attr('x', width + 50)
 		.attr('y', height + 50)
-		// .transition()
-		// .duration(500)
-		// .delay(function(d, i) {
-		// 	return i * 2
-		// })
+		.transition()
+		.duration(500)
+		.delay(function(d, i) {
+			return i * 2
+		})
 		.attr('x', (d, i) => widthScale(i % root_num_squares))
 		.attr('y', function(d, i) {
 			return widthScale(Math.floor(i / root_num_squares))
@@ -223,15 +228,15 @@ function testIndividuals() {
 	d3.select('.positive-str').text(
 		`${TRUE_POS + FALSE_POS} people tested positive`
 	)
-	theButton.on('click', groupTests)
+	theButton.text("Group 'em up for me").on('click', groupTests)
 
 	pctSvg
 		.selectAll('.block')
-		// .transition()
-		// .duration(500)
-		// .delay(function(d, i) {
-		// 	return i * 2
-		// })
+		.transition()
+		.duration(500)
+		.delay(function(d, i) {
+			return i * 2
+		})
 		.attr('fill', d => (d.positive ? '#d7191c' : '#a6d96a'))
 }
 
@@ -245,17 +250,17 @@ function groupTests() {
 
 	pctSvg
 		.selectAll('rect.block')
-		// .transition()
-		// .duration(500)
-		// .delay(function(d, i) {
-		// 	return i * 2
-		// })
+		.transition()
+		.duration(500)
+		.delay(function(d, i) {
+			return i * 2
+		})
 		.attr('x', d => widthScale(d.idx % root_num_squares))
 		.attr('y', function(d) {
 			return widthScale(Math.floor(d.idx / root_num_squares))
 		})
 
-	theButton.on('click', revealHealth)
+	theButton.text('Ten Years Later...').on('click', revealHealth)
 }
 
 function revealHealth() {
@@ -274,7 +279,7 @@ function revealHealth() {
 		`${FALSE_POS} healthy people who tested positive`
 	)
 	d3.select('.negative-s-str').text(
-		`${FALSE_NEG} 'sick' ${
+		`${FALSE_NEG} sick ${
 			FALSE_NEG > 1 ? 'people' : 'person'
 		} tested negative!`
 	)
@@ -315,7 +320,7 @@ function revealHealth() {
 				)
 		})
 
-	theButton.on('click', removeNegatives)
+	theButton.text("Let's focus.").on('click', removeNegatives)
 }
 
 function removeNegatives() {
@@ -332,9 +337,12 @@ function removeNegatives() {
 		})
 		.transition()
 		.duration(500)
-		.style('opacity', 0)
 
-	theButton.on('click', highlightPositives)
+		.style('opacity', 0.2)
+
+	theButton
+		.text('Remove the Negative Nancies!')
+		.on('click', highlightPositives)
 }
 
 function highlightPositives() {
@@ -398,10 +406,24 @@ function highlightPositives() {
 		.text(`${FALSE_POS} False Positives`)
 		.style('opacity', 1)
 
-	theButton.on('click', grandFinale)
+	theButton
+		.text('Do the math. Show me the good stuff.')
+		.on('click', grandFinale)
 }
 
 function grandFinale() {
+	d3.select('#explanation-zoomed')
+		.classed('isHidden', true)
+		.classed('isVisible', false)
+	const finale = d3.select('#explanation-finale')
+
+	d3.select('#explanation-finale')
+		.classed('isVisible', true)
+		.classed('isEnter', false)
+	finale.select('.positive-s-str').text(`${TRUE_POS} true positives`)
+	finale.select('.total').text(`${TRUE_POS + FALSE_POS} true positives`)
+	finale.select('.pct').text(`${Math.round(EST_PROB * 1000) / 10}%`)
+
 	pctSvg
 		.selectAll('rect.block')
 		.transition()
@@ -419,6 +441,7 @@ function grandFinale() {
 	middle
 		.append('path')
 		.style('opacity', 0)
+		.attr('id', 'tp')
 		.transition()
 		.duration(500)
 		.delay(500)
@@ -428,7 +451,7 @@ function grandFinale() {
 		.style('opacity', 1)
 	middle
 		.append('path')
-		.attr('class', 'to-remove')
+		.attr('id', 'fp')
 		.style('opacity', 0)
 		.transition()
 		.duration(500)
@@ -443,7 +466,7 @@ function grandFinale() {
 
 	middle
 		.append('text')
-		.text(`${EST_PROB * 100}%`)
+		.text(`${Math.round(EST_PROB * 1000) / 10}%`)
 		.attr('y', width / 2)
 		.attr('x', 0)
 		.style('opacity', 0)
@@ -455,14 +478,55 @@ function grandFinale() {
 		.style('opacity', 1)
 
 	middle
-		.select('.to-remove')
+		.select('#fp')
 		.transition()
 		.duration(500)
 		.delay(1500)
-		.style('opacity', 0)
-		.on('end', function() {
-			d3.select(this).remove()
-		})
+		.style('opacity', 0.2)
+
+	theButton.text('Let me explore.').on('click', playground)
+}
+
+function playground() {
+	d3.selectAll('rect').remove()
+	d3.select('#explanation-finale')
+		.classed('isHidden', true)
+		.classed('isVisible', false)
+	d3.select('#playground')
+		.classed('isVisible', true)
+		.classed('isHidden', false)
+	theButton.remove()
+	d3.select('#fp').style('opacity', 1)
+
+	let acc_slider = d3.select('#accuracy-slider')
+	let occ_slider = d3.select('#occurrence-slider')
+	acc_slider.on('input', function() {
+		const a = +acc_slider.property('value') / 100
+		const o = +occ_slider.property('value') / 100
+		redoProbs(a, o)
+	})
+	occ_slider.on('input', function() {
+		const a = +acc_slider.property('value') / 100
+		const o = +occ_slider.property('value') / 100
+		redoProbs(a, o)
+	})
+}
+
+function redoProbs(a, o) {
+	const t = (a * o) / (a * o + (1 - a) * (1 - o))
+	d3.select('#acc-label').text(`${a * 100}% Device Accuracy`)
+	d3.select('#tp').attr(
+		'd',
+		bigArc.startAngle(0).endAngle(finalAngleScale(t))
+	)
+	d3.select('#fp').attr(
+		'd',
+		bigArc.startAngle(finalAngleScale(t)).endAngle(Math.PI * 2)
+	)
+	d3.select('g')
+		.select('g')
+		.select('text')
+		.text(`${Math.round(t * 1000) / 10}% Chance of Probaphobia`)
 }
 
 // const waffle = d3
