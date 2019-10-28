@@ -466,7 +466,7 @@ function grandFinale() {
 
 	middle
 		.append('text')
-		.text(`${Math.round(EST_PROB * 1000) / 10}%`)
+		.text(`${Math.round(EST_PROB * 1000) / 10}% Chance of Probaphobia`)
 		.attr('y', width / 2)
 		.attr('x', 0)
 		.style('opacity', 0)
@@ -495,11 +495,12 @@ function playground() {
 	d3.select('#playground')
 		.classed('isVisible', true)
 		.classed('isHidden', false)
-	theButton.remove()
-	d3.select('#fp').style('opacity', 1)
+	theButton.text('Back to the beginning').on('click', function() {
+		document.location.reload(true)
+	})
 
-	let acc_slider = d3.select('#accuracy-slider')
-	let occ_slider = d3.select('#occurrence-slider')
+	let acc_slider = d3.select('#accuracy-slider').style('margin', 'auto')
+	let occ_slider = d3.select('#occurrence-slider').style('margin', 'auto')
 	acc_slider.on('input', function() {
 		const a = +acc_slider.property('value') / 100
 		const o = +occ_slider.property('value') / 100
@@ -515,6 +516,7 @@ function playground() {
 function redoProbs(a, o) {
 	const t = (a * o) / (a * o + (1 - a) * (1 - o))
 	d3.select('#acc-label').text(`${a * 100}% Device Accuracy`)
+	d3.select('#occ-label').text(`${o * 100}% Device Accuracy`)
 	d3.select('#tp').attr(
 		'd',
 		bigArc.startAngle(0).endAngle(finalAngleScale(t))
@@ -528,27 +530,3 @@ function redoProbs(a, o) {
 		.select('text')
 		.text(`${Math.round(t * 1000) / 10}% Chance of Probaphobia`)
 }
-
-// const waffle = d3
-// 	.select('#chart-1')
-// 	.append('svg')
-// 	.style('margin', 'auto')
-// 	.attr('width', width + margin.left + margin.right)
-// 	.attr('height', height + margin.top + margin.bottom)
-// 	.append('g')
-// 	.attr('transform', `translate(${margin.left},${margin.top})`)
-
-// waffle
-// 	.selectAll('.block')
-// 	.data(patients)
-// 	.enter()
-// 	.append('rect')
-// 	.attr('class', 'block')
-// 	.attr('x', (d, i) => widthScale(i % root_num_squares))
-// 	.attr('y', function(d, i) {
-// 		return widthScale(Math.floor(i / root_num_squares))
-// 	})
-// 	.attr('width', widthScale.bandwidth())
-// 	.attr('height', widthScale.bandwidth())
-// 	.attr('fill', d => colorScale(d.diag))
-// 	.attr('stroke', 'none')

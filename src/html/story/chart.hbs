@@ -8,15 +8,15 @@
 		<div class="interElems isEnter" id='guess-response'>
 			<span class='result--high isHidden'>
 				<p>You guessed <strong class='guess-spot'></strong>, but that's actually too high! The correct answer is that you're only 50% likely to have Probaphobia.</p>
-				<p>Don't worry, though: you're in good company with American doctors. When asked this question in 2010, 95 out of 100 doctors gave answers for the the likelihood of a patient having Probaphobia that were way too high!</p>
+				<p>Don't worry, though: you're in good company. In 2010, psychologist Gerd Gigerenzer asked 100 American doctors a similar question about mammograms and breast cancer. Out of these 100 doctors, 95 overestimated the probability by about a factor of eight. OK, maybe you should worry if you're seeing American doctors for rare disease diagnoses.</p>
 			</span>
 			<span class='result--low isHidden'>
 				<p>You guessed <strong class='guess-spot'></strong>, but that's actually too low! The correct answer is that you're actually 50% likely to have Probaphobia.</p>
-				<p>Don't worry, though: you're in good company with American doctors. When asked this question in 2010, 95 out of 100 doctors gave answers for the the likelihood of a patient having Probaphobia that were way too high!</p>
+				<p>It sounds like you're a little too suspicious of this medical device. At an accuracy of 99%, it's not going to be wrong all that often. Or maybe you're underestimating how rare Probaphobia actually is.</p>
 			</span>
 			<span class='result--close isHidden'>
 				<p>You were right on the money! You guessed that the probability is <strong class='guess-spot'></strong>, and the correct answer is that you're 50% likely to have Probaphobia.</p>
-				<p>Compared to 95 out of 100 American doctors asked this question in 2010, you have a very good read on the situation.</p>
+				<p>In fact, you're doing much better than the people that we'd like to be good at this kind of reasoning. In 2010, psychologist Gerd Gigerenzer asked 100 American doctors a similar question about mammograms and breast cancer. Out of these 100 doctors, 95 overestimated the probability by about a factor of eight.</p>
 			</span>
 		</div>
 		<div class="interElems isEnter" id='explanation-start'>
@@ -28,7 +28,7 @@
 			<p>It turns out that <strong class="negative-str">XX people tested negative</strong> and <strong class="positive-str">YY tested positive</strong>. Let's group everyone together to make this easier to think about.</p>
 		</div>
 		<div class="interElems isEnter" id='explanation-tested-ordered'>
-			<p>Now that everything's in order, we see that the number of people who <strong class="positive-str">test positive</strong> are very strongly in the minority. This is reasonable: only 1% of the global population has Probaphobia, and our device is pretty accurate overall. It should be rare that someone actually tests positive. But we still don't know who's sick! How can we find out, you ask?</p>
+			<p>Now that everything's in order, we see that the people who <strong class="positive-str">test positive</strong> are very strongly in the minority. This is reasonable: only 1% of the global population has Probaphobia, and our device is pretty accurate overall. It should be rare that someone actually tests positive. But we still don't know who's sick! How can we find out, you ask?</p>
 			<p>Oh! Did I forget to mention? Probaphobia makes you sprout wings after 10 years with the disease. That way, it becomes pretty obvious who among our sample actually had the disease, regardless of what the device said. Let's simulate the passing of a decade now to let the diseased people spread their wings and reveal themselves.</p>
 		</div>
 		<div class="interElems isEnter" id='explanation-healthy'>
@@ -58,7 +58,7 @@
 		<div class="interElems isHidden" id='playground'>
 			<h4 id='acc-label'>99% Device Accuracy</h4>
 			<input id='accuracy-slider' type='range' min='50.0' max='100' step='0.1' value='99.0'>
-			<h4 id='occ-label'>Probaphobia Occurrence Rate</h4>
+			<h4 id='occ-label'>1% Probaphobia Occurrence Rate</h4>
 			<input id='occurrence-slider' type='range' min='0.1' max='10' step='0.1' value='1.0'>
 		</div>
 	</div>
