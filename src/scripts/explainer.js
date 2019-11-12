@@ -516,7 +516,7 @@ function playground() {
 function redoProbs(a, o) {
 	const t = (a * o) / (a * o + (1 - a) * (1 - o))
 	d3.select('#acc-label').text(`${a * 100}% Device Accuracy`)
-	d3.select('#occ-label').text(`${o * 100}% Device Accuracy`)
+	d3.select('#occ-label').text(`${o * 100}% Probaphobia Occurrence Rate`)
 	d3.select('#tp').attr(
 		'd',
 		bigArc.startAngle(0).endAngle(finalAngleScale(t))
